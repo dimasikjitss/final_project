@@ -1,0 +1,14 @@
+{% load static %}
+{% for post in posts %}
+    <div class="entry3 d-block d-sm-flex">
+        <figure class="figure order-2"><a href="{{post.get_absolute_url}}"><img src="{{post.image.url}}" alt="Image" class="img-fluid rounded"></a></figure>
+        <div class="text mr-4 order-1">
+            <span class="post-category text-white bg-success mb-3">{{post.category}}</span>
+            <p class="card-text">{{ post.body|truncatewords:30|linebreaks }} </p>
+            <p class="card-text">Дата публикации:{{ post.publish}}  Автор публикации: {{ post.author }}</p>
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Читать далее</a>
+        </div>
+    </div>
+
+
+{% endfor %}

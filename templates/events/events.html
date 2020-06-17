@@ -1,0 +1,31 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block title  %}
+
+{% endblock title %}
+{% block content %}
+{% for evnt in events %}
+    <div class="card text-center">
+        <div class="card-header">
+            <h4>{{evnt.title}}</h4>
+            <p>
+
+        </div>
+        <div class="card-body">
+            <img src="{{evnt.image.url}}" alt="noimage" width="300" height="300">
+
+            <p class="card-text">{{ evnt.body|truncatewords:30|linebreaks }} </p>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Дата проведения:{{ evnt.date}}  Лектор: {{  evnt.mentors }}</p>
+            <a href="{{ evnt.get_absolute_url }}" class="btn btn-primary">Читать далее</a>
+        </div>
+
+    </div>    
+{% endfor %}
+{% endblock content %}
+
+
+

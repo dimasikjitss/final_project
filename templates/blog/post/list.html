@@ -1,0 +1,51 @@
+{% extends "home.html" %}
+{% load i18n %}
+
+{% block title %}My Blog{% endblock %}
+{% block content %}
+    {% for post in post_category %}
+        <div class="card text-center">
+            <div class="card-header">
+                <h4>{{post.title}}</h4>
+                {% if post.image %}
+                    <img src="{{post.image.url}}" alt="noimage" width="300" height="300">
+                {% endif %}
+                <p>
+                <a href="{{ post.category }}">{{ post.category }}</a></p>
+
+            </div>
+        <div class="card-body">
+            <p class="card-text">{{ post.body|truncatewords:30|linebreaks }} </p>
+            <p class="card-text">Дата публикации:{{ post.publish}}  Автор публикации: {{ post.author }}</p>
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Читать далее</a>
+        </div>
+
+        
+    {% endfor %}
+    <div class="pagination"> 
+        <span class="step-links">
+            {% if page.has_previous %}
+                <a href="?page={{page.previous_page_number}}">Previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ page.number }} of {{ page.paginator.num_pages }}. 
+            </span>
+            {% if page.has_next %}
+                <a href="?page={{ page.next_page_number }}">Next</a>
+            {% endif %} 
+        </span>
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="?page={{page.previous_page_number}}">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">Next</a></li>
+        </ul>
+    </nav>
+
+
+   
+{% endblock %}      

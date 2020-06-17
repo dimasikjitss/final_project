@@ -1,0 +1,11 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block content %}
+  <h1> {{ event.title }} </h1>
+    <img src="{{event.image.url}}" alt="noimage" width="300" height="300">
+    
+    <p class="date">Published {{ event.date }} by {{ event.mentors }}</p> 
+    {{ event.body }}
+    {% endblock  %}

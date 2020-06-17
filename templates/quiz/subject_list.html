@@ -1,0 +1,53 @@
+{% extends 'home.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% for test in object_list %}
+            <!-- Single Popular Course -->
+            <a href="{% url 'quiz_detail' test.pk %}">
+                <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
+                    <img src="{{test.image.url}}" alt="">
+                    <!-- Course Content -->
+                    <div class="course-content">
+                        <h4>{{test.name}}</h4>
+                        <div class="meta d-flex align-items-center">
+                            <a href="#">{{test.company_name}}</a>
+                            <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                        </div>
+                        <p>{{test.body|safe}}</p>
+                    </div>
+                    <!-- Seat Rating Fee -->
+                    <div class="seat-rating-fee d-flex justify-content-between">
+                        <div class="seat-rating h-100 d-flex align-items-center">
+                            <div class="seat">
+                                <i class="fa fa-user" aria-hidden="true"></i> 
+                            </div>
+                            <div class="rating">
+                                <i class="fa fa-date" aria-hidden="true"></i> {{test.date|date:"D d M Y"}}
+                            </div>
+                        </div>
+                        <div class="course-fee h-100">
+                            <a href="{% url 'quiz_detail' test.pk %}" class="free">Пройти тест</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="load-more text-center wow fadeInUp" data-wow-delay="1000ms">
+                    <a href="#" class="btn clever-btn btn-2">Load More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
